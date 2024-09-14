@@ -4,10 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Alberto Carrique</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Portfolio - Alberto</title>
+    <link rel="stylesheet" href="styles-dark.css">
 </head>
 <body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const headerContent = document.querySelector('.header-content h1');
+            if (headerContent) {
+                const terminalIcon = document.createElement('i');
+                terminalIcon.className = 'fas fa-terminal';
+                terminalIcon.style.color = '#8BE9FD';
+                terminalIcon.style.fontSize = '1em';
+                terminalIcon.style.marginRight = '20px';
+                
+                setInterval(() => {
+                    terminalIcon.style.visibility = terminalIcon.style.visibility === 'hidden' ? 'visible' : 'hidden';
+                }, 500);
+
+                headerContent.prepend(terminalIcon);
+            }
+
+            // Smooth scroll adjustment script
+            document.querySelectorAll('.nav-links a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const additionalMargin = 30; // Additional margin in pixels
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.scrollY - headerOffset - additionalMargin;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
     <!-- Header Section -->
     <header>
@@ -24,7 +64,7 @@
             </ul>
         </nav>
         <div class="header-content">
-            <h1>Hello, I'm Alberto Carrique 👋</h1>
+            <h1>Hello, I'm Alberto 👋</h1>
             <p>DevOps Engineer | Cloud Enthusiast | Automation Advocate</p>
         </div>
     </header>
@@ -168,7 +208,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2024 Alberto Carrique. All rights reserved.</p>
+        <p>© 2024 Alberto. All rights reserved.</p>
     </footer>
 
 </body>
